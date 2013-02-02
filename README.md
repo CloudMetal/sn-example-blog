@@ -15,7 +15,9 @@ node app
 </pre>
 
 <http://localhost:3000>
+
 <http://localhost:3000/users>
+
 <http://localhost:3000/blogs>
 
 Customize the configurations
