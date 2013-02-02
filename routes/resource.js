@@ -38,10 +38,17 @@ exports.list = function(mongoose) {
       next();
       return;
     } 
-    mongoModel.find(function (err, objs) {
+    var options = {};
+    if(req.params.skip) {
+      options.skip = req.params.skip;
+    }
+    if(req.params.limit) {
+      options.skip = req.params.limit;
+    }
+    mongoModel.find(options, function (err, objs) {
       if (err) {
         console.log(err);
-        res.send(404, err);
+        res.send(500, err);
       } else {
         res.send(200, objs);
       }

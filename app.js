@@ -47,19 +47,19 @@ app.configure('development', function(){
 app.get('/', routes.index);
 
 // Create a new entity
-app.post('/:resource', resource.create(mongo.mongoose));
+app.post('/rest/:resource', resource.create(mongo.mongoose));
 
 // List the entities
-app.get('/:resource', resource.list(mongo.mongoose));
+app.get('/rest/:resource', resource.list(mongo.mongoose));
 
 // Find the entity by id
-app.get('/:resource/:id', resource.findById(mongo.mongoose));
+app.get('/rest/:resource/:id', resource.findById(mongo.mongoose));
 
 // Update the entity by id
-app.put('/:resource/:id', resource.updateById(mongo.mongoose));
+app.put('/rest/:resource/:id', resource.updateById(mongo.mongoose));
 
 // Delete the entity by id
-app.delete('/:resource/:id', resource.deleteById(mongo.mongoose));
+app.delete('/rest/:resource/:id', resource.deleteById(mongo.mongoose));
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
