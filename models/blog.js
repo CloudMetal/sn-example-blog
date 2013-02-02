@@ -25,6 +25,6 @@ CommentSchema.pre('save', function (next) {
     next();
 });
 
-var Blog = mongoose.model("blog", BlogSchema);
+var Blog = mongoose.model("blogs", BlogSchema);
 
 module.exports = Blog;

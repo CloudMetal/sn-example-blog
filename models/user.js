@@ -45,6 +45,6 @@ UserSchema.statics.findByUsernamePassword = function (username, password) {
     return  this.where({username:username, _password:sha1b64(password)});
 }
 
-var User = mongoose.model("user", UserSchema);
+var User = mongoose.model("users", UserSchema);
 
 module.exports = User;
