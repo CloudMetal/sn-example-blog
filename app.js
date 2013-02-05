@@ -24,6 +24,7 @@ var allowCrossDomain = function(req, res, next) {
 };
 
 var app = express();
+module.exports = app;
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -45,6 +46,8 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
+// app.get('/login', routes.login);
+// app.get('/account', routes.account);
 
 // Create a new entity
 app.post('/rest/:resource', resource.create(mongo.mongoose));

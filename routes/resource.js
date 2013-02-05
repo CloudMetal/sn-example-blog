@@ -9,8 +9,7 @@ exports.create = function(mongoose) {
       next();
       return;
     }
-    var id = req.params.id;
-    mongoModel.create(id, req.body, function (err, obj) {
+    mongoModel.create(req.body, function (err, obj) {
       if (err) {
         console.log(err);
         res.send(500, err);
@@ -39,13 +38,13 @@ exports.list = function(mongoose) {
       return;
     } 
     var options = {};
-    if(req.params.skip) {
-      options.skip = req.params.skip;
+    if(req.query.skip) {
+      options.skip = req.query.skip;
     }
-    if(req.params.limit) {
-      options.skip = req.params.limit;
+    if(req.query.limit) {
+      options.limit = req.query.limit;
     }
-    mongoModel.find(options, function (err, objs) {
+    mongoModel.find(null, null, options, function (err, objs) {
       if (err) {
         console.log(err);
         res.send(500, err);
