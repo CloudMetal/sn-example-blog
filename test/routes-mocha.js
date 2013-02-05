@@ -1,8 +1,12 @@
 process.env.NODE_ENV = 'test';
 require('should');
-var app = require('../app.js'), request = require('./support/http'), mongoose = require('mongoose'), _u = require('underscore');
-assert = require('assert');
-json = JSON.stringify;
+var app = require('../app.js'), 
+    request = require('supertest'), 
+    mongoose = require('mongoose'), 
+    _u = require('underscore');
+    assert = require('assert');
+
+var json = JSON.stringify;
 
 before(function onBefore(done) {
     var connection = mongoose.connection;
@@ -41,6 +45,7 @@ describe('rest', function () {
                 .post('/rest/blogs')
                 .set('Content-Type', 'application/json')
                 .send(json({
+                author: 'superblogger',
                 title:'Test Blog 1',
                 body:'Some blogged goodness'
             })).expect(200).end(function (err, res) {
@@ -48,6 +53,7 @@ describe('rest', function () {
                         console.log('ERROR', arguments);
 
                     res.should.have.property('body');
+                    res.body.should.have.property('author', 'superblogger');
                     res.body.should.have.property('title', 'Test Blog 1');
                     res.body.should.have.property('body', 'Some blogged goodness');
                     id = res.body._id;
@@ -67,8 +73,8 @@ describe('rest', function () {
                 .set('Content-Type', 'application/json')
                 .send(json({
                 comments:[
-                    {title:'Very Cool Thing You Have', body:'Do you like my body?'},
-                    {title:'I dunno I\'m bored', body:'if you think i\'m sexy'}
+                    {author: 'anonymous', title:'Very Cool Thing You Have', body:'Do you like my body?'},
+                    {author: 'usera', title:'I dunno I\'m bored', body:'if you think i\'m sexy'}
                 ]
             })).end(function (err, res) {
                     if (err)
@@ -105,25 +111,25 @@ describe('rest', function () {
     describe('GET /rest/blogs with search options', function () {
         var pids = [];
         it('sets up post A for testing', function (done) {
-            createPost({title:'Post A', body:'A'}, function (e) {
+            createPost({author: 'usera', title:'Post A', body:'A'}, function (e) {
                 pids.push(e._id);
                 done();
             });
         });
         it('sets up post B for testing', function (done) {
-            createPost({title:'Post B', body:'B'}, function (e) {
+            createPost({author: 'userb', title:'Post B', body:'B'}, function (e) {
                 pids.push(e._id);
                 done();
             });
         });
         it('sets up post C for testing', function (done) {
-            createPost({title:'Post C', body:'C'}, function (e) {
+            createPost({author: 'userc', title:'Post C', body:'C'}, function (e) {
                 pids.push(e._id);
                 done();
             });
         });
         it('sets up post C for testing with date', function (done) {
-            createPost({title:'Post C', date:new Date(150000000000)}, function (e) {
+            createPost({author: 'userc', title:'Post C', date:new Date(150000000000)}, function (e) {
                 pids.push(e._id);
                 done();
             });
@@ -162,7 +168,7 @@ describe('rest', function () {
     function createPost(opts, cb) {
         if (!cb) {
             cb = opts;
-            opts = { title:'Test ' + (t), body:'default body for ' + t}
+            opts = { author: 'annoymous', title:'Test ' + (t), body:'default body for ' + t}
             t++;
         }
 
