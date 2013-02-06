@@ -5,6 +5,7 @@
 var express = require('express')
   , routes = require('./routes')
   , resource = require('./routes/resource')
+  , auth = require('./routes/auth')
   , http = require('http')
   , path = require('path')
   , config = require('./config/config.js')
@@ -38,6 +39,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser('your secret here'));
   app.use(express.session());
+  auth.setup(app);
   app.use(allowCrossDomain);
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
@@ -48,8 +50,6 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-// app.get('/login', routes.login);
-// app.get('/account', routes.account);
 
 // Create a new entity
 app.post('/rest/:resource', resource.create(mongo.mongoose));

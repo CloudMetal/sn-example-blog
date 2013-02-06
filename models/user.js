@@ -12,18 +12,6 @@ var UserSchema = new Schema({
     modified_at:{type:Date}
 });
 
-
-UserSchema.statics.findA_thru_H = function onFindAH(){
-    return this.find().regex('username', /^[a-h]/i);
-}
-
-UserSchema.statics.findI_thru_P = function onFindIP(){
-    return this.find().regex('username', /^[i-p]/i);
-}
-UserSchema.statics.findQ_thru_Z = function onFindQZ(){
-    return this.find().regex('username', /^[q-z]/i);
-}
-
 function sha1b64(password) {
     return crypto.createHash('sha1').update(password).digest('base64');
 }
@@ -41,10 +29,18 @@ UserSchema.pre('save', function (next) {
     next();
 });
 
-UserSchema.statics.findByUsernamePassword = function (username, password) {
-    return  this.where({username:username, _password:sha1b64(password)});
+UserSchema.statics.findByUsernamePassword = function (username, password, callback) {
+    return this.findOne({username:username, password:sha1b64(password)}, callback);
 }
 
 var User = mongoose.model("users", UserSchema);
 
 module.exports = User;
+
+module.exports.createUser = function(username, password) {
+   User.create({username: username, password: password}, function(err, user) {
+     if(err) console.log(err);
+     else console.log(user);
+   }
+);
+}
