@@ -3,28 +3,34 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var CommentSchema = new Schema({
-    author:{type:String},
+    author:{type:String, index: true},
     title:{type:String},
     body:{type:String},
-    created_at:{type:Date}
+    date:{type:Date},
 });
 
 var BlogSchema = new Schema({
-    id:{type:String},
-    title:{type:String},
+    title:{type:String, index: true},
     body:{type:String},
-    author:{type:String},
-    created_at:{type:Date},
-    modified_at:{type:Date},
+    author:{type:String, index: true},
+    date:{type:Date},
+    tags:{type:[String], index: true}, 
     comments: [CommentSchema]
 });
 
-CommentSchema.pre('save', function (next) {
-    var _this = this;
+function setDate(next) {
+    var now = Date.now();
     if (this.isNew)
-        this.created_at = Date.now();
+        this.date = now;
+    this.comments.forEach(function(comment) {
+       if(!comment.date) {
+           comment.date = now;
+       }
+    });
     next();
-});
+}
+
+BlogSchema.pre('save', setDate); 
 
 var Blog = mongoose.model("blogs", BlogSchema);
 
