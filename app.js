@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -11,6 +10,9 @@ var express = require('express')
   , config = require('./config/config.js')
   , mongo = require('./mongo-store.js');
 
+/**
+ * Define a callback to set up CORS related headers
+ */
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', config.cors.allowedDomains || '*');
     res.header('Access-Control-Allow-Methods', config.cors.allowedMethos || 'GET, PUT, POST, DELETE, OPTIONS');
@@ -64,6 +66,7 @@ app.put('/rest/:resource/:id', resource.updateById(mongo.mongoose));
 // Delete the entity by id
 app.delete('/rest/:resource/:id', resource.deleteById(mongo.mongoose));
 
+// Start to listen on the HTTP port
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });

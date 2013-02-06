@@ -1,3 +1,6 @@
+/**
+ * Configuration for the sample blog application
+ */
 // mongodb connection
 exports.creds = {
   mongo: {
