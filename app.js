@@ -39,7 +39,9 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser('your secret here'));
   app.use(express.session());
-  auth.setup(app);
+  if(config.auth.enabled === true) {
+    auth.setup(app);
+  }
   app.use(allowCrossDomain);
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));

@@ -19,3 +19,7 @@ exports.cors = {
   allowedHeaders: '*',
   allowedMethods: '*'
 }
+
+exports.auth = {
+  enabled: false
+}
