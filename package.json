@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node app",
-    "test": "./node_modules/mocha/bin/mocha --timeout 30000 --reporter spec test/*-mocha.js"
+    "test": "./node_modules/mocha/bin/mocha --timeout 30000 --reporter spec test/*-mocha.js --noAuth"
   },
 
   "dependencies": {

@@ -21,5 +21,6 @@ exports.cors = {
 }
 
 exports.auth = {
-  enabled: false
+  enabled: process.argv.indexOf('--noAuth') == -1
 }
+
