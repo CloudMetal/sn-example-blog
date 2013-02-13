@@ -14,11 +14,13 @@ mongod --dbpath=mongodb-2.2-demo/ &
 node app
 </pre>
 
+3. Access the server using the following URLs
+
 <http://localhost:3000>
 
-<http://localhost:3000/users>
+<http://localhost:3000/rest/users>
 
-<http://localhost:3000/blogs>
+<http://localhost:3000/rest/blogs>
 
 Customize the configurations
 ============================
