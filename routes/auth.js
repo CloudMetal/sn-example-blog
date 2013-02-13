@@ -6,14 +6,6 @@ var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy
   , User = require('../models/user');
 
-User.findOne({username: "rfeng"}, function(err, user) {
-  if(err) {
-    console.log(err);
-  } else if(!user) {
-    User.createUser("rfeng", "rfeng");
-  }
-});
-
 /**
  * LocalStrategy
  *

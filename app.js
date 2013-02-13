@@ -9,7 +9,8 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , config = require('./config/config.js')
-  , mongo = require('./mongo-store.js');
+  , mongo = require('./mongo-store.js')
+  , setup = require('./app-setup.js');
 
 /**
  * Define a callback to set up CORS related headers
@@ -39,6 +40,9 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser('your secret here'));
   app.use(express.session());
+  if(config.demo.enabled === true) {
+    setup.run();
+  }
   if(config.auth.enabled === true) {
     auth.setup(app);
   }

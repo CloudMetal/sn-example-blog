@@ -24,3 +24,9 @@ exports.auth = {
   enabled: process.argv.indexOf('--noAuth') == -1
 }
 
+exports.demo = {
+  enabled: true,
+  user: 'strongloop',
+  password: 'password'
+}
+

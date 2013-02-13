@@ -38,9 +38,11 @@ var User = mongoose.model("users", UserSchema);
 module.exports = User;
 
 module.exports.createUser = function(username, password) {
-   User.create({username: username, password: password}, function(err, user) {
-     if(err) console.log(err);
-     else console.log(user);
-   }
-);
+    User.create({username: username, password: password}, function(err, user) {
+        if(err) { 
+            console.log(err);
+        } else {
+            console.log(user);
+        } 
+    });
 }
