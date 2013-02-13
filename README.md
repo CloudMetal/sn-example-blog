@@ -22,6 +22,15 @@ node app
 
 <http://localhost:3000/rest/blogs>
 
+4. Sample user credentials
+
+If prompted for authorization, use :
+
+<pre>
+  user: strongloop
+  password: password
+</pre>
+
 Customize the configurations
 ============================
 
