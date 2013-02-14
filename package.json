@@ -13,7 +13,8 @@
     "mongoose": "latest",
     "passport": "latest",
     "passport-local": "latest",
-    "connect-ensure-login": "latest"
+    "connect-ensure-login": "latest",
+    "moment": "latest"
   },
 
   "devDependencies": {
