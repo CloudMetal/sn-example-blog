@@ -1,11 +1,71 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="assets/bootstrap/css/bootstrap-responsive.min.css"  rel="stylesheet" media="all" />
+  <link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="css/blog.css" rel="stylesheet">
+
+  <title><%= title %></title>
+
+  <meta name="description" content="FreeLunch Services Dashboard.">
+
+  <script src="js/jquery-1.9.1.min.js"></script>
+
+  <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+</head>
+
+<body>
+
+  <!-- ==== Navbar ================================================== -->
+  <div class="container-narrow">
+
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="#">Home</a></li>
+        </ul>
+        <img src="images/strongloop.png" height=35% width=35%/>
+        <p class="lead">Sample Blog Application.</p>
+      </div>
+      <hr>
+  </div>
+
+<!-- ==== Main Contents ============================================ -->
+<div class="container-narrow">
+  <br/>
+  <br/>
+
+	<% blogs.forEach( function(blog){ %>
+	<p>
+		<div class="post">
+			<h2><%= blog.title %></h2>
+		</div>
+		<span class="underlined"></span>
+		<br/>
+		<%=: blog.date | displayDate %> by <%= blog.author %>
+		<br/>
+		<br/>
+		<div class="entry">
+			<%= blog.body %> <br/>
+		</div>
+		</br>
+		<%= blog.tags %> <br/>
+
+		<p style="text-align: center;">
+			<span class="hex">⬢</span>
+			<span class="hex">⬢</span>
+			<span class="hex">⬢</span>
+		</p>
+	</p>
+  <% }); %>
+  <br/>
+  <br/>
+
+</div>
+
+</body>
 </html>
