@@ -118,3 +118,22 @@ exports.updateById = function(mongoose) {
   };
 }
 
+/**
+ * Expose the CRUD operations as REST APIs
+ */
+exports.setup = function(app, mongoose) {
+  // Create a new entity
+  app.post('/rest/:resource', exports.create(mongoose));
+
+  // List the entities
+  app.get('/rest/:resource', exports.list(mongoose));
+
+  // Find the entity by id
+  app.get('/rest/:resource/:id', exports.findById(mongoose));
+
+  // Update the entity by id
+  app.put('/rest/:resource/:id', exports.updateById(mongoose));
+
+  // Delete the entity by id
+  app.delete('/rest/:resource/:id', exports.deleteById(mongoose));
+}

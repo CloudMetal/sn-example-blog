@@ -57,20 +57,8 @@ app.configure('development', function(){
 
 app.get('/', routes.index);
 
-// Create a new entity
-app.post('/rest/:resource', resource.create(mongo.mongoose));
-
-// List the entities
-app.get('/rest/:resource', resource.list(mongo.mongoose));
-
-// Find the entity by id
-app.get('/rest/:resource/:id', resource.findById(mongo.mongoose));
-
-// Update the entity by id
-app.put('/rest/:resource/:id', resource.updateById(mongo.mongoose));
-
-// Delete the entity by id
-app.delete('/rest/:resource/:id', resource.deleteById(mongo.mongoose));
+// Set up the resource CRUD REST Apis
+resource.setup(app, mongo.mongoose);
 
 // Start to listen on the HTTP port
 http.createServer(app).listen(app.get('port'), function(){
