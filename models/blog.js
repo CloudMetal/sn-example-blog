@@ -20,8 +20,9 @@ var BlogSchema = new Schema({
 
 function setDate(next) {
     var now = Date.now();
-    if (this.isNew)
+    if (this.isNew) {
         this.date = now;
+    }
     this.comments.forEach(function(comment) {
        if(!comment.date) {
            comment.date = now;

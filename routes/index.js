@@ -14,14 +14,6 @@ exports.index = function (req, res) {
 	});
 };
 
-exports.login = function(req, res){
-  res.render('login', {});
-};
-
-exports.account = function(req, res){
-  res.render('account', {});
-};
-
 /*
  * Filter to handle dates.
  */

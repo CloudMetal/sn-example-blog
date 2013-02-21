@@ -7,11 +7,15 @@ var express = require('express')
   , routes = require('./routes')
   , resource = require('./routes/resource')
   , auth = require('./routes/auth')
+  , post = require('./routes/post')
+  , index = require('./routes/index')
   , http = require('http')
   , path = require('path')
   , config = require('./config/config.js')
   , mongo = require('./mongo-store.js')
   , setup = require('./app-setup.js');
+
+
 
 /**
  * Define a callback to set up CORS related headers
@@ -44,6 +48,7 @@ app.configure(function(){
   if(config.demo.enabled === true) {
     setup.run();
   }
+  post.setup(app);
   if(config.auth.enabled === true) {
     auth.setup(app);
   }

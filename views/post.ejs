@@ -23,7 +23,6 @@
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
           <li class="active"><a href="#">Home</a></li>
-          <li class="active"><a href="/post">New Post</a></li>
         </ul>
         <img src="images/strongloop.png" height=35% width=35%/>
         <p class="lead">Sample Blog Application.</p>
@@ -36,29 +35,20 @@
   <br/>
   <br/>
 
-	<% blogs.forEach( function(blog){ %>
-	<p>
-		<div class="post">
-			<h2><%= blog.title %></h2>
-		</div>
-		<span class="underlined"></span>
-		<br/>
-		<%=: blog.date | displayDate %> by <%= blog.author %>
-		<br/>
-		<br/>
-		<div class="entry">
-			<%= blog.body %> <br/>
-		</div>
-		</br>
-		<%= blog.tags %> <br/>
-
-		<p style="text-align: center;">
-			<span class="hex">⬢</span>
-			<span class="hex">⬢</span>
-			<span class="hex">⬢</span>
-		</p>
-	</p>
-  <% }); %>
+  <form action="/post" method="POST" class="form-horizontal">
+    <fieldset>
+        <legend>New Blog Post</legend>
+        <label>Title</label>
+        <input class="span8" id="title" name="title" type="text" placeholder="Type something…">
+        </br>
+        </br>
+        <textarea class="span8" id="body" name="body" rows="15"></textarea>
+        </br>
+        </br>
+        <button type="submit" class="btn">Save</button>
+    </fieldset>
+  </form>
+  
   <br/>
   <br/>
 
