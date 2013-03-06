@@ -17,7 +17,7 @@ var express = require('express')
  */
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', config.cors.allowedDomains || '*');
-    res.header('Access-Control-Allow-Methods', config.cors.allowedMethos || 'GET, PUT, POST, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Methods', config.cors.allowedMethods || 'GET, PUT, POST, DELETE, OPTIONS');
     res.header('Access-Control-Allow-Headers', config.cors.allowedHeaders || '*');
     //deal with OPTIONS method
     if (req.method == 'OPTIONS') {
