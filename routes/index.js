@@ -9,6 +9,8 @@
 
 exports.index = function (req, res) {
 	Blog.find({}).sort({'date': 'descending'}).execFind( function (err, blogs) {
+                // Disable cache so that the page refreshes
+                res.setHeader('Cache-Control', 'no-store');
 		res.render('index', {
 			title: 'Sample Blog Application',
 			blogs: blogs});
