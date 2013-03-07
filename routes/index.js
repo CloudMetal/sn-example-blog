@@ -47,5 +47,5 @@ exports.setup = function(app) {
  */
 
  ejs.filters.displayDate = function(date) {
- 	return moment(date).format("MMM D, YYYY");
+ 	return moment(date).format("YYYY-MM-DD HH:mm:ss");
  }
