@@ -8,7 +8,7 @@
    , Blog = require('../models/blog');
 
 exports.index = function (req, res) {
-	Blog.find( function (err, blogs, count) {
+	Blog.find({}).sort({'date': 'descending'}).execFind( function (err, blogs) {
 		res.render('index', {
 			title: 'Sample Blog Application',
 			blogs: blogs});
