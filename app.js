@@ -48,13 +48,13 @@ app.configure(function(){
   if(config.demo.enabled === true) {
     setup.run();
   }
-  index.setup(app);
-  post.setup(app);
   if(config.auth.enabled === true) {
     auth.setup(app);
   }
   app.use(allowCrossDomain);
   app.use(app.router);
+  index.setup(app);
+  post.setup(app);
   app.use(express.static(path.join(__dirname, 'public')));
 });
 

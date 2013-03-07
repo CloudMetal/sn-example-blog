@@ -54,7 +54,14 @@ exports.account = [
 exports.setup = function(app) {
   app.use(passport.initialize());
   app.use(passport.session());
-  app.all('/rest/*', ensure.ensureLoggedIn('/login'));
+  app.all('/post', function(req, res, next) {
+      console.log(req.path);
+      if(req.path === "/login") {
+          next();
+      } else {
+          ensure.ensureLoggedIn('/login')(req, res, next);
+      }
+  });
   app.get('/login', exports.loginForm);
   app.post('/login', exports.login);
   app.get('/logout', exports.logout);
