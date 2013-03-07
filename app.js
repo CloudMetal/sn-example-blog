@@ -48,6 +48,7 @@ app.configure(function(){
   if(config.demo.enabled === true) {
     setup.run();
   }
+  index.setup(app);
   post.setup(app);
   if(config.auth.enabled === true) {
     auth.setup(app);
@@ -61,7 +62,7 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/', routes.index);
+//app.get('/', routes.index);
 
 // Set up the resource CRUD REST Apis
 resource.setup(app, mongo.mongoose);
