@@ -1,6 +1,5 @@
- var moment = require('moment')
-   , config = require('../config/config.js')
-   , Blog = require('../models/blog');
+var config = require('../config/config.js')
+    , Blog = require('../models/blog');
 
 
 exports.post = function(req, res) {

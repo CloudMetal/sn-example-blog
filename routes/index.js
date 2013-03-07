@@ -3,7 +3,6 @@
  */
 
  var ejs = require('ejs')
-   , moment = require('moment')
    , config = require('../config/config.js')
    , Blog = require('../models/blog');
 
@@ -36,7 +35,6 @@ exports.postComment = function(req, res) {
 }
 
 
-
 exports.setup = function(app) {
 	app.get('/', exports.index);
 	app.post('/postComment', exports.postComment);
@@ -47,5 +45,5 @@ exports.setup = function(app) {
  */
 
  ejs.filters.displayDate = function(date) {
- 	return moment(date).format("YYYY-MM-DD HH:mm:ss");
+        return date;
  }

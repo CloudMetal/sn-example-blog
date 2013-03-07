@@ -8,13 +8,12 @@
   },
 
   "dependencies": {
-    "express": "3.1.0",
-    "ejs": "*",
+    "express": "latest",
+    "ejs": "latest",
     "mongoose": "latest",
     "passport": "latest",
     "passport-local": "latest",
-    "connect-ensure-login": "latest",
-    "moment": "latest"
+    "connect-ensure-login": "latest"
   },
 
   "devDependencies": {
