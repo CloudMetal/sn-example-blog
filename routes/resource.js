@@ -1,6 +1,12 @@
+/**
+ * REST APIs for mongoose models that supports CRUD operations 
+ */
 var User = require('../models/user')
   , Blog = require('../models/blog');
 
+/**
+ * Create a new entity
+ */
 exports.create = function(mongoose) {
   var mongo = mongoose;
   return function(req, res, next) {
@@ -21,8 +27,8 @@ exports.create = function(mongoose) {
   };
 }
 
-/*
- * GET resource listing.
+/**
+ * List all entities 
  */
 exports.list = function(mongoose) {
   var mongo = mongoose;
@@ -55,6 +61,9 @@ exports.list = function(mongoose) {
   }; 
 }
 
+/**
+ * Find an entity by id
+ */
 exports.findById = function(mongoose) {
   var mongo = mongoose;
   return function(req, res, next) {
@@ -76,6 +85,9 @@ exports.findById = function(mongoose) {
   };
 }
 
+/**
+ * Delete an entity by id
+ */
 exports.deleteById = function(mongoose) {
   var mongo = mongoose;
   return function(req, res, next) {
@@ -97,6 +109,9 @@ exports.deleteById = function(mongoose) {
   };
 }
 
+/**
+ * Update an entity by id
+ */
 exports.updateById = function(mongoose) {
   var mongo = mongoose;
   return function(req, res, next) {
@@ -121,19 +136,24 @@ exports.updateById = function(mongoose) {
 /**
  * Expose the CRUD operations as REST APIs
  */
-exports.setup = function(app, mongoose) {
+exports.setup = function(app, options) {
+  options = options || {};
+  mongoose = options.mongoose || require('../db/mongo-store').mongoose;
+  
+  var base = options.path || '/rest';
+  
   // Create a new entity
-  app.post('/rest/:resource', exports.create(mongoose));
+  app.post(base + '/:resource', exports.create(mongoose));
 
   // List the entities
-  app.get('/rest/:resource', exports.list(mongoose));
+  app.get(base + '/:resource', exports.list(mongoose));
 
   // Find the entity by id
-  app.get('/rest/:resource/:id', exports.findById(mongoose));
+  app.get(base + '/:resource/:id', exports.findById(mongoose));
 
   // Update the entity by id
-  app.put('/rest/:resource/:id', exports.updateById(mongoose));
+  app.put(base + '/:resource/:id', exports.updateById(mongoose));
 
   // Delete the entity by id
-  app.delete('/rest/:resource/:id', exports.deleteById(mongoose));
+  app.delete(base + '/:resource/:id', exports.deleteById(mongoose));
 }

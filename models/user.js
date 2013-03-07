@@ -1,3 +1,6 @@
+/**
+ * User schema
+ */
 var crypto = require('crypto'), 
     mongoose = require('mongoose'), 
     Schema = mongoose.Schema;

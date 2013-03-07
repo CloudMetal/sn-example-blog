@@ -12,7 +12,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , config = require('./config/config.js')
-  , mongo = require('./mongo-store.js')
+  , mongo = require('./db/mongo-store.js')
   , setup = require('./app-setup.js');
 
 
@@ -69,5 +69,5 @@ resource.setup(app, mongo.mongoose);
 
 // Start to listen on the HTTP port
 http.createServer(app).listen(app.get('port'), function(){
-  console.log("Express server listening on port " + app.get('port'));
+  console.log("Sample blog server listening on port " + app.get('port'));
 });

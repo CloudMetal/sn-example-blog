@@ -2,7 +2,7 @@
  * A module to connect to a MongoDB store
  */
 var mongoose = require('mongoose'), 
-    config = require('./config/config.js')
+    config = require('../config/config.js')
 
 exports.mongoose = mongoose;
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
