@@ -4,9 +4,8 @@ var Schema = mongoose.Schema;
 
 var CommentSchema = new Schema({
     author:{type:String, index: true},
-    title:{type:String},
     body:{type:String},
-    date:{type:Date},
+    date:{type:Date, default: new Date()},
 });
 
 var BlogSchema = new Schema({
