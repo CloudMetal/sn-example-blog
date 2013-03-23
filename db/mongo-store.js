@@ -24,7 +24,7 @@ var generate_mongo_url = function(obj) {
   }
 }
 
-var mongourl = generate_mongo_url(mongo);
+var mongourl = process.env.MONGODB_URI || generate_mongo_url(mongo);
 
 if(mongoose.connection.readyState  == 0) {
   exports.db = mongoose.connect(mongourl);
