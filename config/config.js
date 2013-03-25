@@ -25,7 +25,7 @@ exports.auth = {
 }
 
 exports.demo = {
-  enabled: true,
+  enabled: process.argv.indexOf('--noSetup') == -1,
   user: 'strongloop',
   password: 'password'
 }

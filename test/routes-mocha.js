@@ -11,7 +11,8 @@ var json = JSON.stringify;
 before(function onBefore(done) {
     var connection = mongoose.connection;
     connection.on('open', function () {
-        connection.db.dropDatabase(function () {
+        connection.db.dropDatabase(function (err, result) {
+            assert.equal(null, err);
             console.log('dropped database [' + connection.name + ']');
             done();
         });
@@ -22,6 +23,7 @@ before(function onBefore(done) {
 describe('rest', function () {
     describe('GET /rest/blogs', function () {
         it('should return empty list', function (done) {
+            console.log('Sending request to GET /rest/blogs');
             request(app).get('/rest/blogs')
                 .expect('Content-Type', /json/)
                 .expect(200)
