@@ -11,9 +11,9 @@ var json = JSON.stringify;
 before(function onBefore(done) {
     var connection = mongoose.connection;
     connection.on('open', function () {
-        connection.db.dropDatabase(function (err, result) {
+        connection.db.dropCollection('blogs', function (err, result) {
             assert.equal(null, err);
-            console.log('dropped database [' + connection.name + ']');
+            console.log('dropped collection: blogs');
             done();
         });
     });
