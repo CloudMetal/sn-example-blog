@@ -15,7 +15,14 @@ var express = require('express')
   , mongo = require('./db/mongo-store.js')
   , setup = require('./app-setup.js');
 
+var cluster = require('cluster')
+  , control = require('strong-cluster-control');
 
+if(cluster.isMaster) {
+  control.start({
+    size: control.CPUS
+  });
+} else {
 
 /**
  * Define a callback to set up CORS related headers
@@ -71,3 +78,5 @@ resource.setup(app, mongo.mongoose);
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Sample blog server listening on port " + app.get('port'));
 });
+
+}
