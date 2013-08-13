@@ -13,7 +13,7 @@
     "passport": "latest",
     "passport-local": "latest",
     "connect-ensure-login": "latest",
-    "strong-cluster-control": "0.0.2"
+    "strong-cluster-control": "~0.0.2"
   },
   "devDependencies": {
     "mocha": "latest",
