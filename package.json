@@ -2,6 +2,7 @@
   "name": "sample-blog",
   "version": "0.0.1",
   "private": true,
+  "main": "app.js",
   "scripts": {
     "start": "node app",
     "test": "./node_modules/mocha/bin/mocha --timeout 30000 --reporter spec test/*-mocha.js --noAuth --noSetup"
