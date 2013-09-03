@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+require('strong-agent').profile();
+
 /**
  * If configured as a cluster master, just start controller.
  */
