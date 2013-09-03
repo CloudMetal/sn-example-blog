@@ -16,8 +16,8 @@ exports.index = function(req, res) {
     // Disable cache so that the page refreshes
     res.setHeader('Cache-Control', 'no-store');
     res.render('index', {
-      title : 'Sample Blog Application',
-      blogs : blogs
+      title: 'Sample Blog Application',
+      blogs: blogs
     });
   });
 };
@@ -27,14 +27,14 @@ exports.index = function(req, res) {
  */
 exports.postComment = function(req, res) {
   var comment = {
-    author : config.demo.user,
-    body : req.body.body
+    author: config.demo.user,
+    body: req.body.body
   };
 
   Blog.update({
-    _id : req.body.postId
+    _id: req.body.postId
   }, {
-    $push : {
+    $push: {
       'comments' : comment
     }
   }, function(err, blog) {
@@ -45,8 +45,8 @@ exports.postComment = function(req, res) {
     }
   });
 
-  res.redirect("/");
-}
+  res.redirect('/');
+};
 
 /**
  * Set up the routes
@@ -61,4 +61,4 @@ exports.setup = function(app) {
  */
 ejs.filters.displayDate = function(date) {
   return date;
-}
+};

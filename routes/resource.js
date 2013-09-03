@@ -1,5 +1,5 @@
 /**
- * REST APIs for mongoose models that supports CRUD operations 
+ * REST APIs for mongoose models that supports CRUD operations
  */
 var User = require('../models/user')
   , Blog = require('../models/blog');
@@ -11,11 +11,11 @@ exports.create = function(mongoose) {
   var mongo = mongoose;
   return function(req, res, next) {
     var mongoModel = mongo.model(req.params.resource);
-    if(!mongoModel) {
+    if (!mongoModel) {
       next();
       return;
     }
-    mongoModel.create(req.body, function (err, obj) {
+    mongoModel.create(req.body, function(err, obj) {
       if (err) {
         console.log(err);
         res.send(500, err);
@@ -25,32 +25,32 @@ exports.create = function(mongoose) {
       }
     });
   };
-}
+};
 
 /**
- * List all entities 
+ * List all entities
  */
 exports.list = function(mongoose) {
   var mongo = mongoose;
   return function(req, res, next) {
-    var mongoModel = null; 
+    var mongoModel = null;
     try {
       mongoModel = mongo.model(req.params.resource);
-    } catch(err) {
+    } catch (err) {
       console.log(err);
-    } 
-    if(!mongoModel) {
+    }
+    if (!mongoModel) {
       next();
       return;
-    } 
+    }
     var options = {};
-    if(req.query.skip) {
+    if (req.query.skip) {
       options.skip = req.query.skip;
     }
-    if(req.query.limit) {
+    if (req.query.limit) {
       options.limit = req.query.limit;
     }
-    mongoModel.find(null, null, options, function (err, objs) {
+    mongoModel.find(null, null, options, function(err, objs) {
       if (err) {
         console.log(err);
         res.send(500, err);
@@ -58,8 +58,8 @@ exports.list = function(mongoose) {
         res.send(200, objs);
       }
     });
-  }; 
-}
+  };
+};
 
 /**
  * Find an entity by id
@@ -68,12 +68,12 @@ exports.findById = function(mongoose) {
   var mongo = mongoose;
   return function(req, res, next) {
     var mongoModel = mongo.model(req.params.resource);
-    if(!mongoModel) {
+    if (!mongoModel) {
       next();
       return;
     }
     var id = req.params.id;
-    mongoModel.findById(id, function (err, obj) {
+    mongoModel.findById(id, function(err, obj) {
       if (err) {
         console.log(err);
         res.send(404, err);
@@ -83,7 +83,7 @@ exports.findById = function(mongoose) {
       }
     });
   };
-}
+};
 
 /**
  * Delete an entity by id
@@ -92,12 +92,12 @@ exports.deleteById = function(mongoose) {
   var mongo = mongoose;
   return function(req, res, next) {
     var mongoModel = mongo.model(req.params.resource);
-    if(!mongoModel) {
+    if (!mongoModel) {
       next();
       return;
     }
     var id = req.params.id;
-    mongoModel.findByIdAndRemove(id, function (err, obj) {
+    mongoModel.findByIdAndRemove(id, function(err, obj) {
       if (err) {
         console.log(err);
         res.send(404, err);
@@ -107,7 +107,7 @@ exports.deleteById = function(mongoose) {
       }
     });
   };
-}
+};
 
 /**
  * Update an entity by id
@@ -116,12 +116,12 @@ exports.updateById = function(mongoose) {
   var mongo = mongoose;
   return function(req, res, next) {
     var mongoModel = mongo.model(req.params.resource);
-    if(!mongoModel) {
+    if (!mongoModel) {
       next();
       return;
     }
     var id = req.params.id;
-    mongoModel.findByIdAndUpdate(id, req.body, function (err, obj) {
+    mongoModel.findByIdAndUpdate(id, req.body, function(err, obj) {
       if (err) {
         console.log(err);
         res.send(404, err);
@@ -131,7 +131,7 @@ exports.updateById = function(mongoose) {
       }
     });
   };
-}
+};
 
 /**
  * Expose the CRUD operations as REST APIs
@@ -139,9 +139,9 @@ exports.updateById = function(mongoose) {
 exports.setup = function(app, options) {
   options = options || {};
   mongoose = options.mongoose || require('../db/mongo-store').mongoose;
-  
+
   var base = options.path || '/rest';
-  
+
   // Create a new entity
   app.post(base + '/:resource', exports.create(mongoose));
 
@@ -156,4 +156,4 @@ exports.setup = function(app, options) {
 
   // Delete the entity by id
   app.delete(base + '/:resource/:id', exports.deleteById(mongoose));
-}
+};

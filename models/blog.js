@@ -35,7 +35,7 @@ function setDate(next) {
 
 BlogSchema.pre('save', setDate); 
 
-var Blog = mongoose.model("blogs", BlogSchema);
+var Blog = mongoose.model('blogs', BlogSchema);
 
 module.exports = Blog;
 
@@ -47,4 +47,4 @@ module.exports.createBlogPost = function(title, body, author, date, tags ) {
             console.log(blog);
         } 
     });
-}
+};

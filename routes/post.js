@@ -9,19 +9,19 @@ var config = require('../config/config.js')
  */
 exports.post = function(req, res) {
   res.render('post', {
-    title : 'Sample Blog Application - New Blog post',
-    author : req.user.username
+    title: 'Sample Blog Application - New Blog post',
+    author: req.user.username
   });
-}
+};
 
 /**
  * Save the blog entry and redirect to / for refreshing
  */
 exports.save = function(req, res) {
   Blog.create({
-    title : req.body.title,
-    body : req.body.body,
-    author : req.user.username
+    title: req.body.title,
+    body: req.body.body,
+    author: req.user.username
   }, function(err, blog) {
     if (err) {
       console.err(err);
@@ -29,8 +29,8 @@ exports.save = function(req, res) {
       console.log(blog);
     }
   });
-  res.redirect("/");
-}
+  res.redirect('/');
+};
 
 /**
  * Set up the Express routes

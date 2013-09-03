@@ -4,7 +4,7 @@
 var passport = require('passport')
   , ensure = require('connect-ensure-login')
   , LocalStrategy = require('passport-local').Strategy
-  , User = require('../models/user');
+, User = require('../models/user');
 
 /**
  * LocalStrategy
@@ -40,20 +40,20 @@ exports.loginForm = function(req, res) {
 };
 
 exports.login = passport.authenticate('local', {
-  successReturnToOrRedirect : '/',
-  failureRedirect : '/login'
+  successReturnToOrRedirect: '/',
+  failureRedirect: '/login'
 });
 
 exports.logout = function(req, res) {
   req.logout();
   res.redirect('/');
-}
+};
 
-exports.account = [ ensure.ensureLoggedIn('/login'), function(req, res) {
+exports.account = [ensure.ensureLoggedIn('/login'), function(req, res) {
   res.render('account', {
-    user : req.user
+    user: req.user
   });
-} ]
+}];
 
 /**
  * Set up the login handler
@@ -63,7 +63,7 @@ exports.setup = function(app) {
   app.use(passport.session());
   app.all('/post', function(req, res, next) {
     console.log(req.path);
-    if (req.path === "/login") {
+    if (req.path === '/login') {
       next();
     } else {
       ensure.ensureLoggedIn('/login')(req, res, next);

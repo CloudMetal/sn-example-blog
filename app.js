@@ -9,7 +9,7 @@ require('strong-agent').profile();
 var control = require('strong-cluster-control');
 var options = control.loadOptions();
 
-if(options.clustered && options.isMaster) {
+if (options.clustered && options.isMaster) {
   return control.start(options);
 }
 
@@ -48,7 +48,7 @@ var allowCrossDomain = function(req, res, next) {
 var app = express();
 module.exports = app;
 
-app.configure(function(){
+app.configure(function() {
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
@@ -58,10 +58,10 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser('your secret here'));
   app.use(express.session());
-  if(config.demo.enabled === true) {
+  if (config.demo.enabled === true) {
     setup.run();
   }
-  if(config.auth.enabled === true) {
+  if (config.auth.enabled === true) {
     auth.setup(app);
   }
   app.use(allowCrossDomain);
@@ -71,7 +71,7 @@ app.configure(function(){
   app.use(express.static(path.join(__dirname, 'public')));
 });
 
-app.configure('development', function(){
+app.configure('development', function() {
   app.use(express.errorHandler());
 });
 
@@ -81,6 +81,6 @@ app.configure('development', function(){
 resource.setup(app, mongo.mongoose);
 
 // Start to listen on the HTTP port
-http.createServer(app).listen(app.get('port'), function(){
-  console.log("Sample blog server listening on port " + app.get('port'));
+http.createServer(app).listen(app.get('port'), function() {
+  console.log('Sample blog server listening on port ' + app.get('port'));
 });
