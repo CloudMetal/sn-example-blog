@@ -22,5 +22,6 @@
     "should": "latest",
     "supertest": "latest",
     "underscore": "latest"
-  }
+  },
+  "license": "MIT"
 }
