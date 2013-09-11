@@ -15,7 +15,7 @@
     "passport-local": "latest",
     "connect-ensure-login": "latest",
     "strong-cluster-control": "~0.1.0",
-    "strong-agent": "latest"
+    "strong-agent": "~0.2.11"
   },
   "devDependencies": {
     "mocha": "latest",
