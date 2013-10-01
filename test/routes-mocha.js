@@ -9,6 +9,7 @@ var app = require('../app.js'),
 var json = JSON.stringify;
 
 before(function onBefore(done) {
+    this.timeout(120000);
     var connection = mongoose.connection;
     connection.on('open', function() {
         connection.db.dropCollection('blogs', function(err, result) {
