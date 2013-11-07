@@ -8,20 +8,20 @@
     "test": "./node_modules/mocha/bin/mocha --timeout 30000 --reporter spec test/*-mocha.js --noAuth --noSetup"
   },
   "dependencies": {
-    "express": "latest",
-    "ejs": "latest",
+    "express": "~3.4.4",
+    "ejs": "~0.8.4",
     "mongoose": "~3.6.0",
-    "passport": "latest",
-    "passport-local": "latest",
-    "connect-ensure-login": "latest",
+    "passport": "~0.1.17",
+    "passport-local": "~0.1.6",
+    "connect-ensure-login": "~0.1.1",
     "strong-cluster-control": "~0.1.0",
     "strong-agent": "~0.2.11"
   },
   "devDependencies": {
-    "mocha": "latest",
-    "should": "latest",
-    "supertest": "latest",
-    "underscore": "latest"
+    "mocha": "~1.14.0",
+    "should": "~2.0.2",
+    "supertest": "~0.8.1",
+    "underscore": "~1.5.2"
   },
   "license": "MIT"
 }
